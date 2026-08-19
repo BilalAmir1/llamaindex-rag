@@ -1,22 +1,21 @@
-import { groq } from '@ai-sdk/groq';
-import { generateText } from 'ai';
-import readline from "readline";
+import { Groq } from "@llamaindex/groq";
+import { HuggingFaceEmbedding } from "@llamaindex/huggingface";
+import { SimpleDirectoryReader } from "@llamaindex/readers/directory";
 
-
-
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
+const llm = new Groq({
+  model: "llama-3.3-70b-versatile",
 });
 
-rl.question("Enter:", async (prompt) => {
-  const { text } = await generateText({
-    model: groq('llama-3.3-70b-versatile'),
-    prompt: prompt,
-  });
+const embedModel = new HuggingFaceEmbedding({
+  modelType: "BAAI/bge-small-en-v1.5",
+});
 
- console.log(text);
+console.log("LLM and embedding model configured.");
 
-  rl.close();
-})
+const reader = new SimpleDirectoryReader();
 
+const documents = await reader.loadData({
+  directoryPath: "data",
+});
+
+console.log(documents);

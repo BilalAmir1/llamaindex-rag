@@ -16,6 +16,9 @@
   },
   "dependencies": {
     "@ai-sdk/groq": "^4.0.27",
+    "@llamaindex/groq": "^0.0.94",
+    "@llamaindex/huggingface": "^0.1.32",
+    "@llamaindex/readers": "^3.1.21",
     "ai": "^7.0.59",
     "llamaindex": "^0.12.1"
   }
