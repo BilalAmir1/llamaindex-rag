@@ -1,0 +1,4 @@
+Strapi is an open-source headless CMS.
+It allows developers to create and manage content through an administration panel.
+Strapi provides APIs that applications can use to retrieve and modify content.
+Strapi can be used with frontend frameworks such as Next.js and React.

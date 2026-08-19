@@ -1,0 +1,3 @@
+React is a JavaScript library for building user interfaces.
+React uses components to organize UI into reusable pieces.
+React applications are commonly built using JavaScript or TypeScript.
