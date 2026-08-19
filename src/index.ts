@@ -4,7 +4,7 @@ import { SimpleDirectoryReader } from "@llamaindex/readers/directory";
 import { Settings, VectorStoreIndex } from "llamaindex";
 
 const llm = new Groq({
-  model: "llama-3.3-70b-versatile",
+  model: "openai/gpt-oss-120b",
 });
 
 const embedModel = new HuggingFaceEmbedding({
@@ -12,6 +12,8 @@ const embedModel = new HuggingFaceEmbedding({
 });
 
 Settings.embedModel = embedModel
+
+Settings.llm = llm
 
 console.log("LLM and embedding model configured.");
 
@@ -23,4 +25,11 @@ const documents = await reader.loadData({
 
 const index = await VectorStoreIndex.fromDocuments(documents); 
 
-console.log("Index created.", index);
+const queryEngine = index.asQueryEngine();
+
+
+const response = await queryEngine.query({
+  query: "What is Strapi and how can it be used with React?",
+});
+
+console.log(response.toString());
